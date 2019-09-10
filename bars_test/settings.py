@@ -24,7 +24,7 @@ SECRET_KEY = '1dpt-lt=(h$r%xiz%psye_k!28-x4g5rsmiaitq9k+$250ssec'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fast-gorge-06447.herokuapp.com']
 
 # Application definition
 
