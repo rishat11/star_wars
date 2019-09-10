@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вопросы испытания</title>
+</head>
+<body>
+<form action="{% url "main:questions" recruit_id %}" method="post">
+{% csrf_token %}
+<ul>
+    {% for question in questions %}
+        <li>
+            {{ question }}
+            <input type="text" name="answers">
+        </li>
+    {% endfor %}
+    <input type="submit" value="Отправить">
+</ul>
+</form>
+</body>
+</html>

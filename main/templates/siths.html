@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница ситхов</title>
+</head>
+<body>
+{% for sith in siths %}
+    <p><a href="{% url "main:sith_page" sith.id %}">{{ sith }}</a></p>
+{% endfor %}
+</body>
+</html>

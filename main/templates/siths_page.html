@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница ситха</title>
+    <style>
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 50%;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+    {% for recruit, result in answers %}
+        {{ recruit.name }}
+        <div class="row">
+            <div class="column"><pre>{{ result.list_of_questions }}</pre></div>
+            <div class="column"><pre>{{ result.list_of_answers }}</pre></div>
+        </div>
+        <a href="{% url "main:make_hand_of_shadow" recruit.id sith_id %}">Зачислить к себе рукой тени</a><br>
+    {% endfor %}
+</ul>
+</body>
+</html>
