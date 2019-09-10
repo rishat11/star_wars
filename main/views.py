@@ -14,17 +14,23 @@ def index(request):
 
 
 def siths(request):
-    siths = Sith.objects.all()
-    return render(request, 'siths.html', {'siths': siths})
+    if request.method == 'GET':
+        siths = Sith.objects.all()
+        return render(request, 'siths.html', {'siths': siths})
+    else:
+        return HttpResponse("405")
 
 
 def sith_page(request, sith_id):
-    recruits = Recruit.objects.filter(sith_hand_of_shadow__isnull=True)
-    results = []
-    for recruit in recruits:
-        results.append(recruit.result)
-    answers = zip(recruits, results)
-    return render(request, 'siths_page.html', {'answers': answers, 'sith_id': sith_id})
+    if request.method == 'GET':
+        recruits = Recruit.objects.filter(sith_hand_of_shadow__isnull=True)
+        results = []
+        for recruit in recruits:
+            results.append(recruit.result)
+        answers = zip(recruits, results)
+        return render(request, 'siths_page.html', {'answers': answers, 'sith_id': sith_id})
+    else:
+        return HttpResponse("405")
 
 
 def recruit_page(request):
@@ -63,30 +69,39 @@ def questions_page(request, recruit_id):
 
 
 def make_hand_of_shadow(request, recruit_id, sith_id):
-    hand_limit = 3
-    recruit = Recruit.objects.get(id=recruit_id)
-    sith = Sith.objects.get(id=sith_id)
-    if sith.hand_of_shadow.count() >= hand_limit:
-        return render(request, 'hand_of_shadow_limit_exceeded.html')
-    send_mail('Зачисление Рукой Тени',
-              'Поздравляем Вы зачислены Рукой Тени к {} с планеты'.format(sith.name, sith.planet),
-              'sith@orden.com',
-              [recruit.email],
-              fail_silently=False)
-    recruit.sith_hand_of_shadow.add(sith)
-    recruit.save()
-    return redirect(reverse('main:index'))
+    if request.method == 'GET':
+        hand_limit = 3
+        recruit = Recruit.objects.get(id=recruit_id)
+        sith = Sith.objects.get(id=sith_id)
+        if sith.hand_of_shadow.count() >= hand_limit:
+            return render(request, 'hand_of_shadow_limit_exceeded.html')
+        send_mail('Зачисление Рукой Тени',
+                  'Поздравляем Вы зачислены Рукой Тени к {} с планеты'.format(sith.name, sith.planet.name),
+                  'sith@orden.com',
+                  [recruit.email],
+                  fail_silently=False)
+        recruit.sith_hand_of_shadow.add(sith)
+        recruit.save()
+        return redirect(reverse('main:index'))
+    else:
+        return HttpResponse('405')
 
 
 def hand_amount(request):
-    siths = Sith.objects.all()
-    return render(request, 'hand_amount.html', {'siths': siths})
+    if request.method == 'GET':
+        siths = Sith.objects.all()
+        return render(request, 'hand_amount.html', {'siths': siths})
+    else:
+        return HttpResponse('405')
 
 
 def more_than_one_hand(request):
-    siths = Sith.objects.all()
-    result = []
-    for sith in siths:
-        if sith.hand_of_shadow.count() > 1:
-            result.append(sith)
-    return render(request, 'more_than_one_hand.html', {'siths': result})
+    if request.method == 'GET':
+        siths = Sith.objects.all()
+        result = []
+        for sith in siths:
+            if sith.hand_of_shadow.count() > 1:
+                result.append(sith)
+        return render(request, 'more_than_one_hand.html', {'siths': result})
+    else:
+        return HttpResponse('405')

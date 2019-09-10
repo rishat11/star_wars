@@ -69,7 +69,7 @@ python-dateutil==2.8.0
 python-telegram-bot==11.1.0
 PyTweening==1.0.3
 pytz==2018.9
-pywin32==224
+pywin32==223
 rcssmin==1.0.6
 redis==3.2.1
 requests==2.22.0
