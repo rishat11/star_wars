@@ -1,0 +1,1 @@
+web: gunicorn bars_test.wsgi
