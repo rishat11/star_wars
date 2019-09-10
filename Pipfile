@@ -90,6 +90,7 @@ PyScreeze = "==0.1.22"
 PyTweening = "==1.0.3"
 Werkzeug = "==0.14.1"
 gunicorn = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.7"
