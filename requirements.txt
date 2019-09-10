@@ -58,7 +58,6 @@ pycparser==2.19
 PyGetWindow==0.0.6
 PyMsgBox==1.0.7
 pyperclip==1.7.0
-pypiwin32==223
 PyQt5==5.13.0
 PyQt5-sip==4.19.18
 PyRect==0.1.4
