@@ -28,16 +28,18 @@ class Recruit(models.Model):
         return self.name
 
 
-class HandOfShadowTask(models.Model):
+class Question(models.Model):
     orden_code = models.CharField(max_length=100)
-    list_of_questions = models.TextField()
+    text = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.orden_code
+        return self.text
 
 
-class TaskResult(models.Model):
-    recruit = models.OneToOneField(Recruit, on_delete=models.CASCADE, related_name='result')
-    list_of_questions = models.TextField()
-    list_of_answers = models.TextField()
+class Answer(models.Model):
+    recruit = models.ForeignKey(Recruit, on_delete=models.CASCADE, related_name='answer')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answer')
+    text = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.text
