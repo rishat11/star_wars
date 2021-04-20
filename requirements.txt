@@ -52,7 +52,7 @@ pinax-wiki==1.0.2
 pipenv==2018.11.26
 pluggy==0.12.0
 psycopg2-binary==2.7.7
-py==1.8.0
+py==1.10.0
 PyAutoGUI==0.9.46
 pycparser==2.19
 PyGetWindow==0.0.6
