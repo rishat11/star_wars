@@ -41,7 +41,7 @@ importlib-metadata==0.18
 jdcal==1.4.1
 jmespath==0.9.4
 kombu==4.3.0
-lxml==4.3.2
+lxml==4.6.5
 more-itertools==7.1.0
 MouseInfo==0.0.4
 openpyxl==2.6.0
